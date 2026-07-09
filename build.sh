@@ -75,7 +75,7 @@ do
 	# The arm-hisiv300-linux toolchain defaults to gnu90; the
 	# source uses C99 idioms (for-loop init declarations). Pass
 	# -std=gnu99 through Kbuild's KCFLAGS hook.
-	make CROSS_COMPILE="$TOOLCHAIN" -j$(nproc) KCFLAGS=-std=gnu99 V=1
+	make CROSS_COMPILE="$TOOLCHAIN" -j$(nproc) KCFLAGS=-std=gnu99 DEVICE_TREE=$board V=1 || exit 1
 	# The HW gzip decompressor on real Goke V4 silicon only
 	# parses streams compressed with WSIZE=8 KiB (vs system
 	# gzip's 32 KiB) — that's what HiSi's hi_gzip patch sets.
@@ -88,7 +88,7 @@ do
 		make -C tools/hi_gzip SHELL=/bin/bash
 	fi
 	cp -vf tools/hi_gzip/bin/gzip arch/arm/cpu/armv7/${soc}/gzip
-	make CROSS_COMPILE="$TOOLCHAIN" KCFLAGS=-std=gnu99 u-boot-z.bin
+	make CROSS_COMPILE="$TOOLCHAIN" KCFLAGS=-std=gnu99 u-boot-z.bin || exit 1
 	cp -v u-boot-${soc}.bin u-boot-${soc}-universal.bin
 
 	mkdir -vp $OUTPUT/$soc

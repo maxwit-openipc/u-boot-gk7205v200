@@ -25,6 +25,7 @@
 *.bin
 *.map
 *.srec
+*.dtb
 
 # host programs on Cygwin
 *.exe
