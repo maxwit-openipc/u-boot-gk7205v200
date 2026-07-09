@@ -1,0 +1,154 @@
+#
+# NOTE! Don't add files that are generated in specific
+# subdirectories here. Add them in the ".gitignore" file
+# in that subdirectory instead.
+#
+# Normal rules
+#
+*.o
+*.o.*
+*.a
+*.s
+*.su
+*.mod.c
+*.i
+*.lst
+*.order
+*.elf
+*.swp
+*.patch
+*.cfgtmp
+*.cmd
+.config*
+*.dtb.*.tmp
+*.d
+*.bin
+*.map
+*.srec
+
+# host programs on Cygwin
+*.exe
+
+# Build tree
+/build-*
+
+#
+# Top-level generic files
+#
+/MLO*
+/SPL
+/u-boot*
+/boards.cfg
+
+#
+# git files that we don't want to ignore even it they are dot-files
+#
+!.gitignore
+!.mailmap
+
+#
+# Generated files
+#
+/LOG
+/spl/
+/tpl/
+
+#
+# Generated include files
+#
+/include/config/
+/include/generated/
+
+# stgit generated dirs
+patches-*
+.stgit-edit.txt
+
+# quilt's files
+patches
+series
+
+# gdb files
+.gdb_history
+
+# cscope files
+cscope.*
+
+# tags files
+/tags
+/ctags
+/etags
+
+# gnu global files
+GPATH
+GRTAGS
+GSYMS
+GTAGS
+
+*.orig
+*~
+\#*#
+
+.reg
+
+output
+
+include/ms_version.h
+drivers/ddr/goke/default/cmd_bin/ddr_cmd.bin
+tools/hi_gzip/bin/
+tools/hi_gzip/gzip-1.8/
+
+arch/arm/cpu/armv7/*/hw_compressed/ddr_training_boot.c
+arch/arm/cpu/armv7/*/hw_compressed/ddr_training_console.c
+arch/arm/cpu/armv7/*/hw_compressed/ddr_training_ctl.c
+arch/arm/cpu/armv7/*/hw_compressed/ddr_training_custom.c
+arch/arm/cpu/armv7/*/hw_compressed/ddr_training_impl.c
+arch/arm/cpu/armv7/*/hw_compressed/div0.c
+arch/arm/cpu/armv7/*/hw_compressed/emmc_boot.c
+arch/arm/cpu/armv7/*/hw_compressed/himci_boot.c
+arch/arm/cpu/armv7/*/hw_compressed/hw_decompress.c
+arch/arm/cpu/armv7/*/hw_compressed/hw_decompress_*.c
+arch/arm/cpu/armv7/*/hw_compressed/hw_decompress_v1.c
+arch/arm/cpu/armv7/*/hw_compressed/hw_decompress_v1.h
+arch/arm/cpu/armv7/*/hw_compressed/image_data.gzip
+arch/arm/cpu/armv7/*/hw_compressed/init_registers.c
+arch/arm/cpu/armv7/*/hw_compressed/lowlevel_init_v300.c
+arch/arm/cpu/armv7/*/hw_compressed/pll_trainning.c
+arch/arm/cpu/armv7/*/hw_compressed/reset.S
+arch/arm/cpu/armv7/*/hw_compressed/start.S
+arch/arm/cpu/armv7/*/hw_compressed/uart.S
+arch/arm/cpu/armv7/*/hw_compressed/u-boot-*.bin
+arch/arm/cpu/armv7/*/hw_compressed/u-boot-*.elf.asm
+arch/arm/cpu/armv7/*/hw_compressed/u-boot-*.map
+arch/arm/cpu/armv7/*/hw_compressed/u-boot-*.srec
+arch/arm/cpu/armv7/*/hw_compressed/u-boot-*.text
+arch/arm/cpu/armv7/*/hw_compressed/u-boot-*.tmp
+arch/arm/cpu/armv7/*/hw_compressed/gzip
+
+drivers/ddr/goke/default/cmd_bin/ddr_training_console.c
+drivers/ddr/goke/default/cmd_bin/ddr_training_ctl.c
+drivers/ddr/goke/default/cmd_bin/ddr_training_custom.c
+drivers/ddr/goke/default/cmd_bin/ddr_training_impl.c
+
+arch/arm/cpu/armv7/gk7205v200/gzip
+gk7205v[23][01]0/
+
+arch/arm/include/asm/arch
+examples/standalone/hello_world
+include/autoconf.mk
+include/autoconf.mk.dep
+include/config.h
+scripts/basic/fixdep
+scripts/kconfig/conf
+scripts/kconfig/zconf.hash.c
+scripts/kconfig/zconf.lex.c
+scripts/kconfig/zconf.tab.c
+tools/common/
+tools/dumpimage
+tools/envcrc
+tools/fdtgrep
+tools/gen_eth_addr
+tools/img2srec
+tools/lib/
+tools/mkenvimage
+tools/mkimage
+tools/proftool
