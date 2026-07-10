@@ -5,6 +5,7 @@ if [ $# -gt 0 ]; then
 else
 	board_list="
 	gk7205v200-demb
+	sc6152
 	gk7205v300-demb
 	gk7202v300-demb
 	"
@@ -30,7 +31,7 @@ OUTPUT=${OUTPUT:-output}
 for board in $board_list
 do
 	case $(echo $board | tr A-Z a-z) in
-	*7205v2*)
+	*7205v2*|sc6152)
 		soc=gk7205v200
 		;;
 	*7205v3*)
