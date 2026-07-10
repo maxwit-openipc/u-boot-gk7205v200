@@ -12,7 +12,7 @@ else
 fi
 
 if [ -z "$TOOLCHAIN" ]; then
-	for t in arm-himix100-linux- arm-linux-gcc arm-none-eabi-
+	for t in arm-openipc-linux-musleabi- arm-linux- arm-none-eabi-
 	do
 		if which ${t}gcc > /dev/null; then
 			TOOLCHAIN=$t
@@ -26,6 +26,7 @@ if [ -z $TOOLCHAIN ]; then
 	exit 1
 fi
 
+XOPT=${XOPT:-"V=1"}
 OUTPUT=${OUTPUT:-output}
 
 for board in $board_list
@@ -76,7 +77,7 @@ do
 	# The arm-hisiv300-linux toolchain defaults to gnu90; the
 	# source uses C99 idioms (for-loop init declarations). Pass
 	# -std=gnu99 through Kbuild's KCFLAGS hook.
-	make CROSS_COMPILE="$TOOLCHAIN" -j$(nproc) KCFLAGS=-std=gnu99 DEVICE_TREE=$board V=1 || exit 1
+	make CROSS_COMPILE="$TOOLCHAIN" KCFLAGS=-std=gnu99 DEVICE_TREE=$board $XOPT || exit 1
 	# The HW gzip decompressor on real Goke V4 silicon only
 	# parses streams compressed with WSIZE=8 KiB (vs system
 	# gzip's 32 KiB) — that's what HiSi's hi_gzip patch sets.
