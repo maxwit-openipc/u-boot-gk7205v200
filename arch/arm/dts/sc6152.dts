@@ -7,7 +7,8 @@
 
 / {
 	model = "STAR-NET SC6152";
-	compatible = "goke,gk7205v200";
+	compatible = "star-net,sc6152",
+	    "goke,gk7205v200";
 
 	memory {
 		device_type = "memory";
