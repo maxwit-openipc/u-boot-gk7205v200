@@ -530,8 +530,19 @@ static int initr_env(void)
 		env_relocate();
 	else
 		set_default_env(NULL);
+
 #ifdef CONFIG_OF_CONTROL
 	setenv_addr("fdtcontroladdr", gd->fdt_blob);
+
+    int len = 0;
+    const char *compatible = NULL;
+
+    compatible = fdt_stringlist_get(gd->fdt_blob, 0, "compatible", 0, &len);
+    if (compatible != NULL && len > 0) {
+            const char *comma = strchr(compatible, ',');
+            if (comma)
+                    setenv("board", comma + 1);
+    }
 #endif
 
 	/* Initialize from environment */
