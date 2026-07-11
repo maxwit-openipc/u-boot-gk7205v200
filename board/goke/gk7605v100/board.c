@@ -342,7 +342,7 @@ int dram_init(void)
 {
 	DECLARE_GLOBAL_DATA_PTR;
 
-	gd->ram_size = PHYS_SDRAM_1_SIZE;
+	gd->ram_size = PHYS_SDRAM_1_SIZE / 4;
 	return 0;
 }
 

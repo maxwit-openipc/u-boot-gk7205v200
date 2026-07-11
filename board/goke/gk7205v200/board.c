@@ -331,7 +331,7 @@ int dram_init(void)
 {
 	DECLARE_GLOBAL_DATA_PTR;
 
-	gd->ram_size = PHYS_SDRAM_1_SIZE;
+	gd->ram_size = PHYS_SDRAM_1_SIZE / 4;
 	printf("RAM:   %dMB\n", gd->ram_size / 1024 / 1024);
 	return 0;
 }
