@@ -296,15 +296,8 @@ dtb-$(CONFIG_SOC_KEYSTONE) += k2hk-evm.dtb \
 dtb-$(CONFIG_TARGET_SAMA5D2_XPLAINED) += \
 	at91-sama5d2_xplained.dtb
 
-dtb-$(CONFIG_TARGET_GK7205V200) += \
-	gk7205v200-demb.dtb \
-	sc6152.dtb
-
-dtb-$(CONFIG_TARGET_GK7205V300) += \
-	gk7205v300-demb.dtb
-
-dtb-$(CONFIG_TARGET_GK7202V300) += \
-	gk7202v300-demb.dtb
+DEVICE_TREE ?= $(CONFIG_DEFAULT_DEVICE_TREE:"%"=%)
+dtb-y += $(DEVICE_TREE).dtb
 
 targets += $(dtb-y)
 
