@@ -2,17 +2,18 @@
 
 OUTPUT=${OUTPUT:-$PWD/output}
 XOPT=${XOPT:-V=1}
+TARGET_BOARD=$1
 
 for dts in `ls arch/arm/dts/*.dts`
 do
-    chip_ids=($(grep -m1 -o '"goke,gk720[25]v.*";' $dts | sed 's/[",;]/ /g'))
+    chip_ids=($(grep -m1 -o '"goke,gk7[0-9]\+v[0-9]\+";' $dts | sed 's/[",;]/ /g'))
     test ${#chip_ids[@]} -ne 2 && continue
 
     # vendor=${chip_ids[0]}
     soc=${chip_ids[1]}
 
     board=$(grep -m1 'compatible' $dts | awk -F ',' '{print $2}' | sed 's/[",;]//g')
-    dtb=$(basename ${dts%.dts})
+    test -n "$TARGET_BOARD" -a "$TARGET_BOARD" != $board && continue
 
     for tc in arm-openipc-linux-musleabi- \
         arm-linux-musleabi- \
@@ -72,6 +73,7 @@ do
       drivers/ddr/goke/default/cmd_bin/Makefile
     make CROSS_COMPILE="$toolchain" ${soc}_defconfig
     cp reg_info_${soc}.bin .reg
+    dtb=$(basename ${dts%.dts})
     # The arm-hisiv300-linux toolchain defaults to gnu90; the
     # source uses C99 idioms (for-loop init declarations). Pass
     # -std=gnu99 through Kbuild's KCFLAGS hook.
@@ -95,4 +97,5 @@ do
     cp -v u-boot-${soc}.bin $OUTPUT/$soc/u-boot-${board}.bin
 
     echo
+    test -n "$TARGET_BOARD" -a "$TARGET_BOARD" == $board && break
 done
