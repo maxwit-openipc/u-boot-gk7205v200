@@ -3,6 +3,7 @@
 OUTPUT=${OUTPUT:-$PWD/output}
 XOPT=${XOPT:-V=1}
 TARGET_BOARD=$1
+count=0
 
 for dts in `ls arch/arm/dts/*.dts`
 do
@@ -91,11 +92,22 @@ do
     fi
     cp -vf tools/hi_gzip/bin/gzip arch/arm/cpu/armv7/${soc}/gzip
     make CROSS_COMPILE="$toolchain" KCFLAGS=-std=gnu99 u-boot-z.bin || exit 1
-    # cp -v u-boot-${soc}.bin u-boot-${soc}-universal.bin
 
+    outfile="u-boot-${soc}.bin"
+    outsize=$(stat -c %s $outfile)
+    if [ "$outsize" -gt $((256 << 10)) ]; then
+        echo "$outfile size ($outsize) is to large!"
+        exit 1
+    fi
+
+    # cp -v $outfile u-boot-${soc}-universal.bin
     mkdir -vp $OUTPUT/$soc
-    cp -v u-boot-${soc}.bin $OUTPUT/$soc/u-boot-${board}.bin
+    cp -v $outfile $OUTPUT/$soc/u-boot-${board}.bin
 
+    ((count++))
     echo
     test -n "$TARGET_BOARD" -a "$TARGET_BOARD" == $board && break
 done
+
+echo "Total $count boards was built."
+echo
