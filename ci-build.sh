@@ -2,9 +2,9 @@
 
 OUTPUT=${OUTPUT:-$PWD/output}
 XOPT=${XOPT:-V=1}
-TARGET_BOARD=$1
-count=0
+target_board=$1
 
+count=0
 for dts in `ls arch/arm/dts/*.dts`
 do
     chip_ids=($(grep -m1 -o '"goke,gk7[0-9]\+v[0-9]\+";' $dts | sed 's/[",;]/ /g'))
@@ -14,7 +14,7 @@ do
     soc=${chip_ids[1]}
 
     board=$(grep -m1 'compatible' $dts | awk -F ',' '{print $2}' | sed 's/[",;]//g')
-    test -n "$TARGET_BOARD" -a "$TARGET_BOARD" != $board && continue
+    test -n "$target_board" -a "$target_board" != $board && continue
 
     for tc in arm-openipc-linux-musleabi- \
         arm-linux-musleabi- \
@@ -106,7 +106,8 @@ do
 
     ((count++))
     echo
-    test -n "$TARGET_BOARD" -a "$TARGET_BOARD" == $board && break
+
+    test "$target_board" == $board && break
 done
 
 echo "Total $count boards was built."
