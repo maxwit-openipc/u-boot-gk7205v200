@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash -e
 
 OUTPUT=${OUTPUT:-$PWD/output}
 XOPT=${XOPT:-V=1}
@@ -78,7 +78,7 @@ do
     # The arm-hisiv300-linux toolchain defaults to gnu90; the
     # source uses C99 idioms (for-loop init declarations). Pass
     # -std=gnu99 through Kbuild's KCFLAGS hook.
-    make CROSS_COMPILE="$toolchain" KCFLAGS=-std=gnu99 DEVICE_TREE=$dtb $XOPT || exit 1
+    make CROSS_COMPILE="$toolchain" KCFLAGS=-std=gnu99 DEVICE_TREE=$dtb $XOPT
     # The HW gzip decompressor on real Goke V4 silicon only
     # parses streams compressed with WSIZE=8 KiB (vs system
     # gzip's 32 KiB) — that's what HiSi's hi_gzip patch sets.
@@ -88,10 +88,10 @@ do
     # tools/hi_gzip's Makefile uses bash builtins (popd); on
     # Ubuntu /bin/sh is dash, so invoke with SHELL=bash.
     if [ ! -f tools/hi_gzip/bin/gzip ]; then
-        make -C tools/hi_gzip SHELL=/bin/bash
+        make -C tools/hi_gzip
     fi
     cp -vf tools/hi_gzip/bin/gzip arch/arm/cpu/armv7/${soc}/gzip
-    make CROSS_COMPILE="$toolchain" KCFLAGS=-std=gnu99 u-boot-z.bin || exit 1
+    make CROSS_COMPILE="$toolchain" KCFLAGS=-std=gnu99 u-boot-z.bin
 
     outfile="u-boot-${soc}.bin"
     outsize=$(stat -c %s $outfile)
@@ -104,7 +104,7 @@ do
     mkdir -vp $OUTPUT/$soc
     cp -v $outfile $OUTPUT/$soc/u-boot-${board}.bin
 
-    ((count++))
+    count=$((count + 1))
     echo
 
     test "$target_board" == $board && break
