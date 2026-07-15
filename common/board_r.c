@@ -533,7 +533,9 @@ static int initr_env(void)
 
 #ifdef CONFIG_OF_CONTROL
 	setenv_addr("fdtcontroladdr", gd->fdt_blob);
+#endif
 
+#if defined(CONFIG_FIT) || defined(CONFIG_OF_LIBFDT)
     int len = 0;
     const char *compatible = NULL;
 
@@ -543,6 +545,19 @@ static int initr_env(void)
             if (comma)
                     setenv("board", comma + 1);
     }
+
+    const char *cis_alias = fdt_get_alias(gd->fdt_blob, "cis");
+    if (cis_alias) {
+		int cis_offset = fdt_path_offset(gd->fdt_blob, cis_alias);
+		if (cis_offset >= 0) {
+			const char *cis_id = fdt_getprop(gd->fdt_blob, cis_offset, "compatible", NULL);
+			if (cis_id) {
+				const char *comma = strchr(cis_id, ',');
+				if (comma)
+					setenv("sensor", comma + 1);
+			}
+		}
+	}
 #endif
 
 	/* Initialize from environment */
