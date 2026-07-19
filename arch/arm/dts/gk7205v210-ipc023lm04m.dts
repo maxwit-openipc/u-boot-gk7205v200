@@ -120,33 +120,51 @@
 
 &gpio_chip0 {
 	status = "okay";
+	gpio-line-names = "GPIO0_0", "UART0_RXD", "UART0_TXD", "PWM0", "PWM1";
 };
 
 &gpio_chip1 {
 	status = "okay";
+	gpio-line-names =
+		"LSADC_CH0", "LSADC_CH1",
+		"JTAG_TRSTN", "JTAG_TCK", "JTAG_TMS", "JTAG_TDO";
 };
 
 &gpio_chip2 {
 	status = "okay";
+	gpio-line-names = "JTAG_TD1";
 };
 
 &gpio_chip4 {
 	status = "okay";
+	gpio-line-names =
+		"SDIO0_CCLK_OUT", "SDIO0_CCMD",
+		"SDIO0_CDATA0", "SDIO0_CDATA1", "SDIO0_CDATA2", "SDIO0_CDATA3",
+		"SDIO0_CARD_DETECT";
 };
 
 &gpio_chip5 {
 	status = "okay";
+	gpio-line-names =
+		"ETH_LINK_STA_LED", "ETH_LINK_ACT_LED",
+		"SENSOR_CLK", "SENSOR_RSTN",
+		"I2C0_SDA", "I2C0_SCL";
 };
 
 &gpio_chip6 {
 	status = "okay";
+	gpio-line-names =
+		"I2C2_SDA", "I2C2_SCL",
+		"LCD_DATA0", "LCD_DATA1", "LCD_DATA2", "LCD_DATA3";
 };
 
 &gpio_chip7 {
 	status = "okay";
+	gpio-line-names = "LCD_DATA4", "LCD_DATA5", "LCD_DATA6", "LCD_DATA7";
 };
 
 &gpio_chip8 {
 	status = "okay";
+	gpio-line-names = "LCD_DE", "LCD_HS", "LCD_VS", "LCD_CLK";
 };
 
