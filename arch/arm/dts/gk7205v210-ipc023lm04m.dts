@@ -160,11 +160,11 @@
 
 &gpio_chip7 {
 	status = "okay";
-	gpio-line-names = "LCD_DATA4", "LCD_DATA5", "LCD_DATA6", "LCD_DATA7";
+	gpio-line-names = "LCD_DATA4", "ircut_pin2", "LCD_DATA6", "LCD_DATA7";
 };
 
 &gpio_chip8 {
 	status = "okay";
-	gpio-line-names = "LCD_DE", "LCD_HS", "LCD_VS", "LCD_CLK";
+	gpio-line-names = "LCD_DE", "ircut_pin1", "LCD_VS", "LCD_CLK";
 };
 
