@@ -7,38 +7,38 @@
 #include "gk7205v200.dtsi"
 
 / {
-	model = "STAR-NET SC6152";
-	compatible = "star-net,sc6152",
-	    "goke,gk7205v200";
+    model = "STAR-NET SC6152";
+    compatible = "star-net,sc6152",
+        "goke,gk7205v200";
 
-	memory {
-		device_type = "memory";
-		reg = <0x40000000 0x20000000>;
-	};
+    memory {
+        device_type = "memory";
+        reg = <0x40000000 0x20000000>;
+    };
 
     ipc-control {
         compatible = "ipc, ipc-control";
         #address-cells = <1>;
         #size-cells = <0>;
 
-		camera@0 {
-			reg = <0>;
-			cis {
-				shut-gpios = <&gpio_chip8 7 GPIO_ACTIVE_LOW>;
-			};
+        camera@0 {
+            reg = <0>;
+            cis {
+                shut-gpios = <&gpio_chip8 7 GPIO_ACTIVE_LOW>;
+            };
 
-			cds {
-					gpios = <&gpio_chip1 1 GPIO_ACTIVE_LOW>;
-			};
+            cds {
+                gpios = <&gpio_chip1 1 GPIO_ACTIVE_LOW>;
+            };
 
-			white-led {
-					gpios = <&gpio_chip1 5 GPIO_ACTIVE_LOW>;
-			};
+            white-led {
+                gpios = <&gpio_chip1 5 GPIO_ACTIVE_LOW>;
+            };
 
-			ir-cut {
-					gpios = <&gpio_chip8 6 GPIO_ACTIVE_LOW>, <&gpio_chip8 5 GPIO_ACTIVE_LOW>;
-			};
-		};
+            ir-cut {
+                gpios = <&gpio_chip8 6 GPIO_ACTIVE_LOW>, <&gpio_chip8 5 GPIO_ACTIVE_LOW>;
+            };
+        };
 
         status-leds {
             compatible = "gpio-leds";
@@ -47,10 +47,10 @@
                 gpios = <&gpio_chip1 4 GPIO_ACTIVE_LOW>;
             };
 
-			led-blue {
-					gpios = <&gpio_chip1 0 GPIO_ACTIVE_LOW>;
-			};
-		};
+            led-blue {
+                gpios = <&gpio_chip1 0 GPIO_ACTIVE_LOW>;
+            };
+        };
 
         keys {
             reset {
@@ -58,166 +58,166 @@
             };
         };
 
-		ptz {
-			pan-motor {
-					input-gpios = <&gpio_chip5 7 GPIO_ACTIVE_LOW>,
-						<&gpio_chip5 6 GPIO_ACTIVE_LOW>,
-						<&gpio_chip6 2 GPIO_ACTIVE_LOW>,
-						<&gpio_chip6 3 GPIO_ACTIVE_LOW>;
-			};
+        ptz {
+            pan-motor {
+                input-gpios = <&gpio_chip5 7 GPIO_ACTIVE_LOW>,
+                    <&gpio_chip5 6 GPIO_ACTIVE_LOW>,
+                    <&gpio_chip6 2 GPIO_ACTIVE_LOW>,
+                    <&gpio_chip6 3 GPIO_ACTIVE_LOW>;
+            };
 
-			tilt-motor {
-					input-gpios = <&gpio_chip6 6 GPIO_ACTIVE_LOW>,
-						<&gpio_chip6 7 GPIO_ACTIVE_LOW>,
-						<&gpio_chip1 5 GPIO_ACTIVE_LOW>,
-						<&gpio_chip5 4 GPIO_ACTIVE_LOW>;
-			};
-		};
+            tilt-motor {
+                input-gpios = <&gpio_chip6 6 GPIO_ACTIVE_LOW>,
+                    <&gpio_chip6 7 GPIO_ACTIVE_LOW>,
+                    <&gpio_chip1 5 GPIO_ACTIVE_LOW>,
+                    <&gpio_chip5 4 GPIO_ACTIVE_LOW>;
+            };
+        };
 
-		wifi {
-			enable-pins = <&gpio_chip5 5 GPIO_ACTIVE_HIGH>;
-		};
+        wifi {
+            enable-pins = <&gpio_chip5 5 GPIO_ACTIVE_HIGH>;
+        };
 
-		sdcard {
-			enable-pins = <&gpio_chip2 0 GPIO_ACTIVE_HIGH>;
-		};
+        sdcard {
+            enable-pins = <&gpio_chip2 0 GPIO_ACTIVE_HIGH>;
+        };
 
-		speaker {
-			enable-pins = <&gpio_chip0 0 GPIO_ACTIVE_HIGH>;
-		};
-	};
+        speaker {
+            enable-pins = <&gpio_chip0 0 GPIO_ACTIVE_HIGH>;
+        };
+    };
 };
 
 &uart0 {
-	status = "okay";
+    status = "okay";
 };
 
 &uart1 {
-	status = "okay";
+    status = "okay";
 };
 
 &uart2 {
-	status = "okay";
+    status = "okay";
 };
 
 &i2c_bus0 {
-	status = "okay";
-	clock-frequency = <100000>;
+    status = "okay";
+    clock-frequency = <100000>;
 };
 
 &i2c_bus1 {
-	status = "okay";
-	clock-frequency = <100000>;
+    status = "okay";
+    clock-frequency = <100000>;
 };
 
 &i2c_bus2 {
-	status = "okay";
-	clock-frequency = <100000>;
+    status = "okay";
+    clock-frequency = <100000>;
 };
 
 &spi_bus0{
-	status = "okay";
-	num-cs = <1>;
+    status = "okay";
+    num-cs = <1>;
 
-	spidev@0 {
-		compatible = "rohm,dh2228fv";
-		reg = <0>;
-		pl022,interface = <0>;
-		pl022,com-mode = <0>;
-		spi-max-frequency = <50000000>;
-	};
+    spidev@0 {
+        compatible = "rohm,dh2228fv";
+        reg = <0>;
+        pl022,interface = <0>;
+        pl022,com-mode = <0>;
+        spi-max-frequency = <50000000>;
+    };
 };
 
 &spi_bus1{
-	status = "disabled";
-	num-cs = <2>;
+    status = "disabled";
+    num-cs = <2>;
 
-	spidev@0 {
-		compatible = "rohm,dh2228fv";
-		reg = <0>;
-		pl022,interface = <0>;
-		pl022,com-mode = <0>;
-		spi-max-frequency = <50000000>;
-	};
-	spidev@1 {
-		compatible = "rohm,dh2228fv";
-		reg = <1>;
-		pl022,interface = <0>;
-		pl022,com-mode = <0>;
-		spi-max-frequency = <50000000>;
-	};
+    spidev@0 {
+        compatible = "rohm,dh2228fv";
+        reg = <0>;
+        pl022,interface = <0>;
+        pl022,com-mode = <0>;
+        spi-max-frequency = <50000000>;
+    };
+    spidev@1 {
+        compatible = "rohm,dh2228fv";
+        reg = <1>;
+        pl022,interface = <0>;
+        pl022,com-mode = <0>;
+        spi-max-frequency = <50000000>;
+    };
 };
 
 &dual_timer0 {
-	status = "okay";
+    status = "okay";
 };
 
 &mdio0 {
-	goke,phy-reset-delays-us = <10000 20000 150000>;
-	phy0: ethernet-phy@1 {
-		reg = <1>;
-	};
+    goke,phy-reset-delays-us = <10000 20000 150000>;
+    phy0: ethernet-phy@1 {
+        reg = <1>;
+    };
 };
 
 &femac {
-	mac-address = [00 00 00 00 00 00];
-	phy-mode = "mii";
-	phy-handle = <&phy0>;
-	status = "okay";
+    mac-address = [00 00 00 00 00 00];
+    phy-mode = "mii";
+    phy-handle = <&phy0>;
+    status = "okay";
 };
 
 &sfc {
-	sfc {
-		compatible = "jedec,spi-nor";
-		reg = <0>;
-		spi-max-frequency = <160000000>;
-	};
+    sfc {
+        compatible = "jedec,spi-nor";
+        reg = <0>;
+        spi-max-frequency = <160000000>;
+    };
 };
 
 &snfc {
-	nand {
-		compatible = "jedec,spi-nand";
-		reg = <0>;
-		spi-max-frequency = <160000000>;
-	};
+    nand {
+        compatible = "jedec,spi-nand";
+        reg = <0>;
+        spi-max-frequency = <160000000>;
+    };
 };
 
 &mmc0 {
-	status = "okay";
+    status = "okay";
 };
 
 &mmc1 {
-	status = "okay";
+    status = "okay";
 };
 
 &gpio_chip0 {
-	status = "okay";
+    status = "okay";
 };
 
 &gpio_chip1 {
-	status = "okay";
+    status = "okay";
 };
 
 &gpio_chip2 {
-	status = "okay";
+    status = "okay";
 };
 
 &gpio_chip4 {
-	status = "okay";
+    status = "okay";
 };
 
 &gpio_chip5 {
-	status = "okay";
+    status = "okay";
 };
 
 &gpio_chip6 {
-	status = "okay";
+    status = "okay";
 };
 
 &gpio_chip7 {
-	status = "okay";
+    status = "okay";
 };
 
 &gpio_chip8 {
-	status = "okay";
+    status = "okay";
 };
