@@ -3,6 +3,7 @@
  */
 
 /dts-v1/;
+#include <dt-bindings/gpio/gpio.h>
 #include "gk7205v200.dtsi"
 
 / {
@@ -20,72 +21,63 @@
         #address-cells = <1>;
         #size-cells = <0>;
 
-        camera@0 {
-            reg = <0>;
+		camera@0 {
+			reg = <0>;
+			cis {
+				shut-gpios = <&gpio8 7 GPIO_ACTIVE_LOW>;
+			};
 
-            cis {
-                shut-gpios = <&gpio8 7 GPIO_ACTIVE_LOW>;
-            };
+			cds {
+					gpios = <&gpio_chip1 1 GPIO_ACTIVE_LOW>;
+			};
 
-            cds {
-                gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
-            };
+			white-led {
+					gpios = <&gpio_chip1 5 GPIO_ACTIVE_LOW>;
+			};
 
-            white-led {
-                gpios = <&gpio1 5 GPIO_ACTIVE_LOW>;
-            };
-
-            ir-cut {
-                gpios = <&gpio8 6 GPIO_ACTIVE_LOW>, <&gpio8 5 GPIO_ACTIVE_LOW>;
-            };
-        };
+			ir-cut {
+					gpios = <&gpio_chip8 6 GPIO_ACTIVE_LOW>, <&gpio_chip8 5 GPIO_ACTIVE_LOW>;
+			};
+		};
 
         status-leds {
             compatible = "gpio-leds";
 
             led-red {
-                gpios = <&gpio1 4 GPIO_ACTIVE_LOW>;
+                gpios = <&gpio_chip1 4 GPIO_ACTIVE_LOW>;
             };
 
+			led-blue {
+					gpios = <&gpio_chip1 0 GPIO_ACTIVE_LOW>;
+			};
+		};
             led-blue {
-                gpios = <&gpio1 0 GPIO_ACTIVE_LOW>;
+                gpios = <&gpio_chip1 0 GPIO_ACTIVE_LOW>;
             };
         };
 
         keys {
             reset {
-                gpios = <&gpio0 4 GPIO_ACTIVE_HIGH>;
+                gpios = <&gpio_chip0 4 GPIO_ACTIVE_HIGH>;
             };
         }
 
-        ptz {
-            pan-motor {
-                input-gpios = <&gpio5 7 GPIO_ACTIVE_LOW>,
-                    <&gpio5 6 GPIO_ACTIVE_LOW>,
-                    <&gpio6 2 GPIO_ACTIVE_LOW>,
-                    <&gpio6 3 GPIO_ACTIVE_LOW>;
-            };
+		ptz {
+			pan-motor {
+					input-gpios = <&gpio_chip5 7 GPIO_ACTIVE_LOW>,
+						<&gpio_chip5 6 GPIO_ACTIVE_LOW>,
+						<&gpio_chip6 2 GPIO_ACTIVE_LOW>,
+						<&gpio_chip6 3 GPIO_ACTIVE_LOW>;
+			};
 
-            tilt-motor {
-                input-gpios = <&gpio6 6 GPIO_ACTIVE_LOW>,
-                    <&gpio6 7 GPIO_ACTIVE_LOW>,
-                    <&gpio1 5 GPIO_ACTIVE_LOW>,
-                    <&gpio5 4 GPIO_ACTIVE_LOW>;
-            };
-        };
-
-        wifi {
-            enable-gpios = <&gpio5 5 GPIO_ACTIVE_HIGH>;
-        };
-
-        sdcard {
-            enable-gpios = <&gpio2 0 GPIO_ACTIVE_HIGH>;
-        };
-
-        speaker {
-            enable-gpios = <&gpio0 0 GPIO_ACTIVE_HIGH>;
-        };
-    };
+			tilt-motor {
+					input-gpios = <&gpio_chip6 6 GPIO_ACTIVE_LOW>,
+						<&gpio_chip6 7 GPIO_ACTIVE_LOW>,
+						<&gpio_chip1 5 GPIO_ACTIVE_LOW>,
+						<&gpio_chip5 4 GPIO_ACTIVE_LOW>;
+			};
+		};
+	};
 };
 
 &uart0 {
@@ -221,4 +213,3 @@
 &gpio_chip8 {
 	status = "okay";
 };
-
