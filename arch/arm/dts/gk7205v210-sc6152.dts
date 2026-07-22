@@ -24,7 +24,7 @@
 		camera@0 {
 			reg = <0>;
 			cis {
-				shut-gpios = <&gpio8 7 GPIO_ACTIVE_LOW>;
+				shut-gpios = <&gpio_chip8 7 GPIO_ACTIVE_LOW>;
 			};
 
 			cds {
@@ -51,16 +51,12 @@
 					gpios = <&gpio_chip1 0 GPIO_ACTIVE_LOW>;
 			};
 		};
-            led-blue {
-                gpios = <&gpio_chip1 0 GPIO_ACTIVE_LOW>;
-            };
-        };
 
         keys {
             reset {
                 gpios = <&gpio_chip0 4 GPIO_ACTIVE_HIGH>;
             };
-        }
+        };
 
 		ptz {
 			pan-motor {
@@ -76,6 +72,18 @@
 						<&gpio_chip1 5 GPIO_ACTIVE_LOW>,
 						<&gpio_chip5 4 GPIO_ACTIVE_LOW>;
 			};
+		};
+
+		wifi {
+			enable-pins = <&gpio_chip5 5 GPIO_ACTIVE_HIGH>;
+		};
+
+		sdcard {
+			enable-pins = <&gpio_chip2 0 GPIO_ACTIVE_HIGH>;
+		};
+
+		speaker {
+			enable-pins = <&gpio_chip0 0 GPIO_ACTIVE_HIGH>;
 		};
 	};
 };
