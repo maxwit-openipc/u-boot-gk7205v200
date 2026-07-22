@@ -15,69 +15,77 @@
 		reg = <0x40000000 0x20000000>;
 	};
 
-	ipc-control {
-		compatible = "ipc, ipc-control";
+    ipc-control {
+        compatible = "ipc, ipc-control";
+        #address-cells = <1>;
+        #size-cells = <0>;
 
-		camera@0 {
-			cis {
-				shut-gpios = <&gpio8 7 GPIO_ACTIVE_LOW>;
-			};
+        camera@0 {
+            reg = <0>;
 
-			cds {
-				gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
-			};
+            cis {
+                shut-gpios = <&gpio8 7 GPIO_ACTIVE_LOW>;
+            };
 
-			white-led {
-				gpios = <&gpio1 5 GPIO_ACTIVE_LOW>;
-			};
+            cds {
+                gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
+            };
 
-			ir-cut {
-				gpios = <&gpio8 6 GPIO_ACTIVE_LOW>, <&gpio8 5 GPIO_ACTIVE_LOW>;
-			};
-		};
+            white-led {
+                gpios = <&gpio1 5 GPIO_ACTIVE_LOW>;
+            };
 
-		status-led {
-			red-led {
-				gpios = <&gpio1 4 GPIO_ACTIVE_LOW>;
-			};
+            ir-cut {
+                gpios = <&gpio8 6 GPIO_ACTIVE_LOW>, <&gpio8 5 GPIO_ACTIVE_LOW>;
+            };
+        };
 
-			blue-led {
-				gpios = <&gpio1 0 GPIO_ACTIVE_LOW>;
-			};
-		};
+        status-leds {
+            compatible = "gpio-leds";
 
-		wifi {
-			enable-gpios = <&gpio5 5 GPIO_ACTIVE_HIGH>;
-		};
+            led-red {
+                gpios = <&gpio1 4 GPIO_ACTIVE_LOW>;
+            };
 
-		sdcard {
-			enable-gpios = <&gpio2 0 GPIO_ACTIVE_HIGH>;
-		};
+            led-blue {
+                gpios = <&gpio1 0 GPIO_ACTIVE_LOW>;
+            };
+        };
 
-		reset-key {
-			gpios = <&gpio0 4 GPIO_ACTIVE_HIGH>;
-		};
+        keys {
+            reset {
+                gpios = <&gpio0 4 GPIO_ACTIVE_HIGH>;
+            };
+        }
 
-		speaker {
-			shut-gpios = <&gpio0 0 GPIO_ACTIVE_HIGH>;
-		};
+        ptz {
+            pan-motor {
+                input-gpios = <&gpio5 7 GPIO_ACTIVE_LOW>,
+                    <&gpio5 6 GPIO_ACTIVE_LOW>,
+                    <&gpio6 2 GPIO_ACTIVE_LOW>,
+                    <&gpio6 3 GPIO_ACTIVE_LOW>;
+            };
 
-		ptz {
-			pan-motor {
-				input-gpios = <&gpio5 7 GPIO_ACTIVE_LOW>,
-					<&gpio5 6 GPIO_ACTIVE_LOW>,
-					<&gpio6 2 GPIO_ACTIVE_LOW>,
-					<&gpio6 3 GPIO_ACTIVE_LOW>;
-			};
+            tilt-motor {
+                input-gpios = <&gpio6 6 GPIO_ACTIVE_LOW>,
+                    <&gpio6 7 GPIO_ACTIVE_LOW>,
+                    <&gpio1 5 GPIO_ACTIVE_LOW>,
+                    <&gpio5 4 GPIO_ACTIVE_LOW>;
+            };
+        };
 
-			tilt-motor {
-				input-gpios = <&gpio6 6 GPIO_ACTIVE_LOW>,
-					<&gpio6 7 GPIO_ACTIVE_LOW>,
-					<&gpio1 5 GPIO_ACTIVE_LOW>,
-					<&gpio5 4 GPIO_ACTIVE_LOW>;
-			};
-		};
-	};
+        wifi {
+            enable-gpios = <&gpio5 5 GPIO_ACTIVE_HIGH>;
+        };
+
+        sdcard {
+            enable-gpios = <&gpio2 0 GPIO_ACTIVE_HIGH>;
+        };
+
+        speaker {
+            enable-gpios = <&gpio0 0 GPIO_ACTIVE_HIGH>;
+        };
+    };
 };
 
 &uart0 {
