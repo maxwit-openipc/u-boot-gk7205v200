@@ -25,7 +25,7 @@
 
 			cds {
 				gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
-			}
+			};
 
 			white-led {
 				gpios = <&gpio1 5 GPIO_ACTIVE_LOW>;
@@ -34,7 +34,7 @@
 			ir-cut {
 				gpios = <&gpio8 6 GPIO_ACTIVE_LOW>, <&gpio8 5 GPIO_ACTIVE_LOW>;
 			};
-		}
+		};
 
 		status-led {
 			red-led {
