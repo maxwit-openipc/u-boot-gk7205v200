@@ -16,6 +16,18 @@
 		reg = <0x40000000 0x20000000>;
 	};
 
+	status-leds {
+		compatible = "gpio-leds";
+
+		led-red {
+			gpios = <&gpio_chip1 4 GPIO_ACTIVE_LOW>;
+		};
+
+		led-blue {
+			gpios = <&gpio_chip1 0 GPIO_ACTIVE_LOW>;
+		};
+	};
+
 	ipc-control {
 		compatible = "ipc, ipc-control";
 		#address-cells = <1>;
@@ -37,18 +49,6 @@
 
 			ir-cut {
 				gpios = <&gpio_chip8 6 GPIO_ACTIVE_LOW>, <&gpio_chip8 5 GPIO_ACTIVE_LOW>;
-			};
-		};
-
-		status-leds {
-			compatible = "gpio-leds";
-
-			led-red {
-				gpios = <&gpio_chip1 4 GPIO_ACTIVE_LOW>;
-			};
-
-			led-blue {
-				gpios = <&gpio_chip1 0 GPIO_ACTIVE_LOW>;
 			};
 		};
 
