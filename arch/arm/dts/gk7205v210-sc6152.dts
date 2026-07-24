@@ -43,8 +43,8 @@
 				gpios = <&gpio_chip1 1 GPIO_ACTIVE_LOW>;
 			};
 
-			white-led {
-				gpios = <&gpio_chip1 5 GPIO_ACTIVE_LOW>;
+			ir-led {
+				gpios = <&gpio_chip1 7 GPIO_ACTIVE_HIGH>;
 			};
 
 			ir-cut {
