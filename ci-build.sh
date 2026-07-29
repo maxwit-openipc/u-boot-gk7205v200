@@ -88,7 +88,7 @@ do
     # tools/hi_gzip's Makefile uses bash builtins (popd); on
     # Ubuntu /bin/sh is dash, so invoke with SHELL=bash.
     if [ ! -f tools/hi_gzip/bin/gzip ]; then
-        make -C tools/hi_gzip
+        make -C tools/hi_gzip SHELL=bash
     fi
     cp -vf tools/hi_gzip/bin/gzip arch/arm/cpu/armv7/${soc}/gzip
     make CROSS_COMPILE="$toolchain" KCFLAGS=-std=gnu99 u-boot-z.bin
