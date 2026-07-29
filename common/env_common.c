@@ -203,7 +203,7 @@ int env_import(const char *buf, int check)
 			set_default_env("!bad CRC");
 
 			char msize[16];
-			sprintf(msize, "%dM", gd->ram_size / 1024 / 1024);
+			sprintf(msize, "%dM", PHYS_SDRAM_1_SIZE / 1024 / 1024);
 			setenv("totalmem", msize);
 
 			if (crc == 0xffffffff) {
