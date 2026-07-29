@@ -8,7 +8,7 @@
 / {
 	model = "Uniview IPC023LM04M";
 	compatible = "uniview,ipc023lm04m",
-		"goke,gk7205v200";
+	    "goke,gk7205v200";
 
 	memory {
 		device_type = "memory";
