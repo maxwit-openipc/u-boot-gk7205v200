@@ -75,15 +75,15 @@
 		};
 
 		wifi {
-			enable-pins = <&gpio_chip5 5 GPIO_ACTIVE_HIGH>;
+			enable-gpios = <&gpio_chip5 5 GPIO_ACTIVE_HIGH>;
 		};
 
 		sdcard {
-			enable-pins = <&gpio_chip2 0 GPIO_ACTIVE_HIGH>;
+			enable-gpios = <&gpio_chip2 0 GPIO_ACTIVE_HIGH>;
 		};
 
 		speaker {
-			enable-pins = <&gpio_chip0 0 GPIO_ACTIVE_HIGH>;
+			enable-gpios = <&gpio_chip0 0 GPIO_ACTIVE_HIGH>;
 		};
 	};
 };
