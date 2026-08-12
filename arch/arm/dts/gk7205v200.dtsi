@@ -108,6 +108,45 @@
 			reg = <0x112C0000 0x10000>;
 		};
 
+		pinctrl0: pinctrl@100c0000 {
+			compatible = "pinctrl-single";
+			reg = <0x100C0000 0x60>;
+			#pinctrl-cells = <1>;
+			pinctrl-single,register-width = <32>;
+			pinctrl-single,function-mask = <0xf>;
+			pinctrl-single,gpio-range = <&pinctrl0_gpio_range 0 5 0>, <&pinctrl0_gpio_range 16 6 0>, <&pinctrl0_gpio_range 23 1 0>;
+
+			pinctrl0_gpio_range: gpio-range {
+				#pinctrl-single,gpio-range-cells = <3>;
+			};
+		};
+
+		pinctrl1: pinctrl@112c0000 {
+			compatible = "pinctrl-single";
+			reg = <0x112C0000 0x78>;
+			#pinctrl-cells = <1>;
+			pinctrl-single,register-width = <32>;
+			pinctrl-single,function-mask = <0xf>;
+			pinctrl-single,gpio-range = <&pinctrl1_gpio_range 10 1 4>, <&pinctrl1_gpio_range 11 19 0>;
+
+			pinctrl1_gpio_range: gpio-range {
+				#pinctrl-single,gpio-range-cells = <3>;
+			};
+		};
+
+		pinctrl2: pinctrl@120c0000 {
+			compatible = "pinctrl-single";
+			reg = <0x120C0000 0x24>;
+			#pinctrl-cells = <1>;
+			pinctrl-single,register-width = <32>;
+			pinctrl-single,function-mask = <0xf>;
+			pinctrl-single,gpio-range = <&pinctrl2_gpio_range 0 2 0>, <&pinctrl2_gpio_range 4 5 2>;
+
+			pinctrl2_gpio_range: gpio-range {
+				#pinctrl-single,gpio-range-cells = <3>;
+			};
+		};
+
 #ifdef CONFIG_EDMAC
 		edmac: edma-controller@100B0000 {
 			compatible = "goke,edmac";
@@ -410,6 +449,7 @@
 			clocks = <&clock  GK7205V200_SYSAPB_CLK>;
 			clock-names = "apb_pclk";
 			#gpio-cells = <2>;
+			gpio-ranges = <&pinctrl0 0 2 1>, <&pinctrl0 1 0 2>, <&pinctrl0 3 3 2>;
 			status = "disabled";
 		};
 
@@ -420,6 +460,7 @@
 			clocks = <&clock  GK7205V200_SYSAPB_CLK>;
 			clock-names = "apb_pclk";
 			#gpio-cells = <2>;
+			gpio-ranges = <&pinctrl2 0 0 2>, <&pinctrl2 4 4 4>;
 			status = "disabled";
 		};
 
@@ -430,6 +471,7 @@
 			clocks = <&clock  GK7205V200_SYSAPB_CLK>;
 			clock-names = "apb_pclk";
 			#gpio-cells = <2>;
+			gpio-ranges = <&pinctrl2 0 8 1>;
 			status = "disabled";
 		};
 
@@ -440,6 +482,7 @@
 			clocks = <&clock  GK7205V200_SYSAPB_CLK>;
 			clock-names = "apb_pclk";
 			#gpio-cells = <2>;
+			gpio-ranges = <&pinctrl0 0 16 6>, <&pinctrl0 7 23 1>;
 			status = "disabled";
 		};
 
@@ -450,6 +493,7 @@
 			clocks = <&clock  GK7205V200_SYSAPB_CLK>;
 			clock-names = "apb_pclk";
 			#gpio-cells = <2>;
+			gpio-ranges = <&pinctrl1 0 16 2>, <&pinctrl1 4 10 1>, <&pinctrl1 5 11 3>;
 			status = "disabled";
 		};
 
@@ -460,6 +504,7 @@
 			clocks = <&clock  GK7205V200_SYSAPB_CLK>;
 			clock-names = "apb_pclk";
 			#gpio-cells = <2>;
+			gpio-ranges = <&pinctrl1 2 14 2>, <&pinctrl1 4 29 1>, <&pinctrl1 5 28 1>, <&pinctrl1 6 27 1>, <&pinctrl1 7 26 1>;
 			status = "disabled";
 		};
 
@@ -470,6 +515,7 @@
 			clocks = <&clock  GK7205V200_SYSAPB_CLK>;
 			clock-names = "apb_pclk";
 			#gpio-cells = <2>;
+			gpio-ranges = <&pinctrl1 0 22 4>;
 			status = "disabled";
 		};
 
@@ -480,6 +526,7 @@
 			clocks = <&clock  GK7205V200_SYSAPB_CLK>;
 			clock-names = "apb_pclk";
 			#gpio-cells = <2>;
+			gpio-ranges = <&pinctrl1 4 21 1>, <&pinctrl1 5 19 1>, <&pinctrl1 6 20 1>, <&pinctrl1 7 18 1>;
 			status = "disabled";
 		};
 
